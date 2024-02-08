@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+option go_package = "github.com/v1gn35h7/cb-grpc-server/pb";
+
+
+service CbService {
+    rpc GetHealth (HealthRequest) returns (HealthResponse) {}
+    rpc BookTicket (BookingRequest) returns (BookingResponse) {}
+    rpc GetSeatArrangenments (SeatArrangmentRequest) returns (SeatArrangmentResponse) {}
+    rpc RemoveUser (RemoveUserRequest)  returns (RemoveUserResponse) {}
+    rpc ModifySeat (ModifySeatRequest)  returns (ModifySeatResponse) {}
+    rpc GetReceipt (ReceiptRequest)  returns (BookingResponse) {}
+}
+
+
+message SeatArrangmentRequest {
+    string section = 1;
+}
+
+message SeatArrangmentResponse {
+   repeated Section sections = 1;
+}
+
+message HealthRequest {
+}
+
+message HealthResponse {
+   string status = 1;
+}
+
+message BookingRequest {
+    string from = 1;
+    string to = 2;
+    User user = 3;
+    double price = 4;
+}
+
+message BookingResponse {
+    string status = 1;
+    string from = 2;
+    string to = 3;
+    User user = 4;
+    double price = 5;
+}
+
+message Section {
+    string name = 1;
+    repeated SeatDetails seats = 2;
+
+}
+
+message SeatDetails {
+    string number = 1;
+    string userID = 2;
+}
+
+message User {
+    string firstName = 1;
+    string lastName = 2;
+    string email = 3; 
+    int64 ID = 4;
+}
+
+message RemoveUserRequest {
+    string userId = 1;
+}
+
+message RemoveUserResponse {
+    string status = 1;
+}
+
+message ModifySeatRequest {
+    string userID = 1;
+    string seatNO = 2;
+}
+
+message ModifySeatResponse {
+    string status = 1;
+}
+
+message ReceiptRequest {
+    string userID = 1;
+}

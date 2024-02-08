@@ -1,0 +1,5 @@
+client:
+  version: "0.1.0"
+  server:
+    host: "localhost:8082"
+    refreshInterval: 10
