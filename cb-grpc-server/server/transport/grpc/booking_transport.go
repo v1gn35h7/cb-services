@@ -6,7 +6,7 @@ import (
 	"github.com/v1gn35h7/cb-grpc-server/server/pb"
 )
 
-// Booking serviec transport
+// Booking service transports
 func (s *grpcServer) BookTicket(ctx context.Context, req *pb.BookingRequest) (*pb.BookingResponse, error) {
 	_, rep, err := s.bookTicket.ServeGRPC(ctx, req)
 	if err != nil {

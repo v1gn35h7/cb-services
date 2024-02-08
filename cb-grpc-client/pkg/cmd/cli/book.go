@@ -39,7 +39,7 @@ func NewBookCommand() *cobra.Command {
 			c := pb.NewGrpcConnection(logger)
 			defer c.Close()
 
-			// Make helath request
+			// Make booking request
 			bookTicket(c, logger)
 
 		},
@@ -52,10 +52,13 @@ func NewBookCommand() *cobra.Command {
 	return bookCmd
 }
 
+/*
+*	Makes gRPC api call
+*   Ticket booking request
+ */
 func bookTicket(c *grpc.ClientConn, logger logr.Logger) {
 	client := cpb.NewCbServiceClient(c)
 
-	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1000)
 	defer cancel()
 
@@ -71,6 +74,7 @@ func bookTicket(c *grpc.ClientConn, logger logr.Logger) {
 		},
 	}
 	r, err := client.BookTicket(ctx, &request)
+
 	if err != nil {
 		logger.Error(err, "Api failed")
 	} else {

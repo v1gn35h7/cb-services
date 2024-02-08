@@ -38,7 +38,7 @@ func NewModifyCommand() *cobra.Command {
 			c := pb.NewGrpcConnection(logger)
 			defer c.Close()
 
-			// Make helath request
+			// Make ticket modification request
 			modify(c, logger)
 
 		},
@@ -50,6 +50,10 @@ func NewModifyCommand() *cobra.Command {
 	return modifyCmd
 }
 
+/*
+*	Makes gRPC api call
+*   Modify Ticket booking
+ */
 func modify(c *grpc.ClientConn, logger logr.Logger) {
 	client := cpb.NewCbServiceClient(c)
 

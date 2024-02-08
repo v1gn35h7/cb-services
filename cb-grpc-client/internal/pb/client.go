@@ -9,6 +9,9 @@ import (
 	"google.golang.org/grpc"
 )
 
+/*
+* Creates new gRPC connection
+ */
 func NewGrpcConnection(logger logr.Logger) *grpc.ClientConn {
 	grpcAddr := viper.GetString("client.server.host")
 

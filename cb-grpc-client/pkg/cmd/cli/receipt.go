@@ -33,7 +33,7 @@ func NewReceiptCommand() *cobra.Command {
 			c := pb.NewGrpcConnection(logger)
 			defer c.Close()
 
-			// Make helath request
+			// Make booking details request
 			getReceipt(c, logger)
 
 		},
@@ -44,10 +44,14 @@ func NewReceiptCommand() *cobra.Command {
 	return receiptCmd
 }
 
+/*
+*	Makes gRPC api call
+*   View booking details
+ */
+
 func getReceipt(c *grpc.ClientConn, logger logr.Logger) {
 	client := cpb.NewCbServiceClient(c)
 
-	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1000)
 	defer cancel()
 

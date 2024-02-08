@@ -36,8 +36,8 @@ func NewViewCommand() *cobra.Command {
 			c := pb.NewGrpcConnection(logger)
 			defer c.Close()
 
-			// Make helath request
-			viewSection(c, logger)
+			// Make view seat arrangements request
+			viewSections(c, logger)
 
 		},
 	}
@@ -47,7 +47,11 @@ func NewViewCommand() *cobra.Command {
 	return viewCmd
 }
 
-func viewSection(c *grpc.ClientConn, logger logr.Logger) {
+/*
+*	Makes gRPC api call
+*   View seat arrangements request
+ */
+func viewSections(c *grpc.ClientConn, logger logr.Logger) {
 	client := cpb.NewCbServiceClient(c)
 
 	// Contact the server and print out its response.

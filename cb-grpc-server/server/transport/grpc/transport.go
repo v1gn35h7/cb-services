@@ -19,6 +19,9 @@ type grpcServer struct {
 	pb.UnimplementedCbServiceServer
 }
 
+/*
+* Registers all gRPC transports for booking service
+ */
 func NewGRPCServer(endpoints grpcEndpoints) *grpcServer {
 
 	return &grpcServer{

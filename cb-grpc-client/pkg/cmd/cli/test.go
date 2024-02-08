@@ -40,10 +40,13 @@ func NewTestCommand() *cobra.Command {
 	return testCmd
 }
 
+/*
+*	Makes gRPC api call
+*   Health request
+ */
 func testConnection(c *grpc.ClientConn, logger logr.Logger) {
 	client := cpb.NewCbServiceClient(c)
 
-	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1000)
 	defer cancel()
 

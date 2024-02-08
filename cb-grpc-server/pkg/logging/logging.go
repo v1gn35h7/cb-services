@@ -12,7 +12,7 @@ var (
 	logger logr.Logger
 )
 
-// Setups logger instance
+// Creates logger instance
 func Logger() logr.Logger {
 	if logger.GetSink() != nil {
 		return logger

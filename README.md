@@ -21,6 +21,10 @@ go build -o client.exe .\cmd\client.go
 .\cb-grpc-server\server --conf=configs
 ```
 
+### Test gRPC connection ###
+```
+.\cb-grpc-client\client.exe test --conf=.\configs\
+```
 
 ### Booking Ticket ###
 ```

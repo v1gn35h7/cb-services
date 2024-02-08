@@ -36,7 +36,7 @@ func NewRemoveCommand() *cobra.Command {
 			c := pb.NewGrpcConnection(logger)
 			defer c.Close()
 
-			// Make helath request
+			// Make cancel request
 			removeUser(c, logger)
 
 		},
@@ -47,10 +47,13 @@ func NewRemoveCommand() *cobra.Command {
 	return rmvCmd
 }
 
+/*
+*	Makes gRPC api call
+*   Cancel booking
+ */
 func removeUser(c *grpc.ClientConn, logger logr.Logger) {
 	client := cpb.NewCbServiceClient(c)
 
-	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1000)
 	defer cancel()
 

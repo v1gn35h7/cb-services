@@ -55,9 +55,10 @@ func bootStrapServer() {
 	// Setup In-Memory Store
 	_ = store.New(2, 10)
 
-	// CloudBees Train Booking Service
+	// Create CloudBees Train Booking Service instance
 	srvc := service.New(logger)
 
+	// Starts group of gorountines and shuts all goroutines if one member fails
 	var g group.Group
 	{
 		// HTTP listener.
