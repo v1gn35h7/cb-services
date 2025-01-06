@@ -1,0 +1,21 @@
+name: gitleaks-hybrid-plugin
+kind: workflow
+apiVersion: automation.cloudbees.io/v1alpha1
+on:
+  workflow_dispatch:
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+  id-token: write
+jobs:
+  blackduck-hybrid-scan:
+    steps:
+      - name: checkout Source Code
+        uses: cloudbees-io/checkout@v1
+      - name: gitleaks hybrid plugin scan
+        uses: cloudbees-io/blackduck-sca-scan-dependency
+        with:
+          project-name: reports-service
+          project-version: 0.0.1
+          server-url: https://blackduck.saas-qa.beescloud.com
+          api-token: YzUwN2MzOWUtYjU4YS00M2UxLWEyOTktNWIwNWQ1YmQyZTUzOmZjZGRkNDJlLTA1NmEtNDJjOS04NzM3LWEzYTM2Y2I5NzVkMw==
